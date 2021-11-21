@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class App 
 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         WebDriverManager.chromedriver().setup();
 
@@ -33,6 +33,16 @@ public class App
         driver.findElement(By.id("user_login")).sendKeys("SuperSeryi");
         driver.findElement(By.id("user_password")).sendKeys("s2233s");
         driver.findElement(By.name("Login")).click();
+        driver.findElement(By.xpath("/html/body/header/div[2]/div/div[2]/nav/div[1]/a/span")).click();
+        driver.findElement(By.xpath("/html/body/main/div[2]/div/div/div[1]/div/form/div[1]/div/div[3]/a/span")).click();
+        driver.findElement(By.xpath("//*[@id=\"bx_1213689452_142767\"]/div/a")).click();
+        driver.findElement(By.xpath("/html/body/main/div[2]/div/div/div[1]/div[2]/div[2]/div[3]/div[1]/div[1]/div[2]/button")).click();
+        driver.findElement(By.xpath("/html/body/div[2]/div/div[1]/div/div[2]/div[1]/a")).click();
+        driver.findElement(By.xpath("/html/body/div[2]/div/div[1]/div/div[1]/div/div[2]/span")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath("//*[@id=\"comp_366054522fed11564619d3a08ff39671\"]/form/div[2]/div[1]/div[3]/div/div/div/div[6]/button")).click();
+        Thread.sleep(1000);
+        driver.quit();
 
 
 
