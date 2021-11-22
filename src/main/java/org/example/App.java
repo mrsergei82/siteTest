@@ -24,8 +24,9 @@ public class App
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("incognito");
 
+        //Добавление в корзину
         WebDriver driver = new ChromeDriver(chromeOptions);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
         driver.get("http://bikeland.ru");
         driver.findElement(By.xpath(
                 "//div[@class='order-1 order-md-2 col col-md-auto col-lg-3 " +
@@ -39,16 +40,28 @@ public class App
         driver.findElement(By.xpath("/html/body/main/div[2]/div/div/div[1]/div[2]/div[2]/div[3]/div[1]/div[1]/div[2]/button")).click();
         driver.findElement(By.xpath("/html/body/div[2]/div/div[1]/div/div[2]/div[1]/a")).click();
         driver.findElement(By.xpath("/html/body/div[2]/div/div[1]/div/div[1]/div/div[2]/span")).click();
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"comp_366054522fed11564619d3a08ff39671\"]/form/div[2]/div[1]/div[3]/div/div/div/div[6]/button")).click();
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
+        //driver.findElement(By.xpath("//*[@id=\"comp_366054522fed11564619d3a08ff39671\"]/form/div[2]/div[1]/div[3]/div/div/div/div[6]/button")).click();
+        //Thread.sleep(1000);
         driver.quit();
 
 
-
-
-
-
+        //удаление из корзины
+        chromeOptions.addArguments("incognito");
+        WebDriver driver1 = new ChromeDriver(chromeOptions);
+        driver1.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver1.get("http://bikeland.ru");
+        driver1.findElement(By.xpath(
+                "//div[@class='order-1 order-md-2 col col-md-auto col-lg-3 " +
+                        "text-right']/div[@class='header-controls']/a")).click();
+        driver1.findElement(By.id("user_login")).sendKeys("SuperSeryi");
+        driver1.findElement(By.id("user_password")).sendKeys("s2233s");
+        driver1.findElement(By.name("Login")).click();
+        driver1.findElement(By.xpath("//a[@class=\"header-controls__btn js-header-basket\"]")).click();
+        driver1.findElement(By.xpath("//div[@class='mfp-content']/div[@class='modal-popup']/div/div/div[2]/span[1]")).click();
+        driver1.findElement(By.xpath("//*[@id=\"comp_366054522fed11564619d3a08ff39671\"]/form/div[2]/div[1]/div[3]/div/div/div/div[6]/button")).click();
+        driver1.quit();
     }
+
 
 }
