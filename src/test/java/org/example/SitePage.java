@@ -3,8 +3,11 @@ package org.example;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.concurrent.TimeUnit;
 
@@ -13,10 +16,13 @@ public  class SitePage {
 
     private WebDriver driver;
 
+
     private final String site = "https://www.livejournal.com";
     private final String login = "Sergei777777";
     private final String password = "SuperGg1";
-    private final String button_Enter_Xp = "//*[@id=\"js\"]/body/div[2]/header/div[1]/nav[2]/ul/li[2]";
+    @FindBy(xpath = "//*[@id=\"js\"]/body/div[2]/header/div[1]/nav[2]/ul/li[2]")
+    private WebElement button_Enter_xp;
+    //private final String button_Enter_Xp = "//*[@id=\"js\"]/body/div[2]/header/div[1]/nav[2]/ul/li[2]";
     private final String login_Xp = "//div[@class=\"b-loginform-field__wrap\"]/input";
     private final String password_id = "lj_loginwidget_password";
     private final String actionLog_name = "action:login";
@@ -30,7 +36,9 @@ public  class SitePage {
     private final String assert4 = "https://sergei777777.livejournal.com/memories";
 
     public SitePage(WebDriver driver){
+
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
     public void testAssert1(){
         driver.getCurrentUrl().equals(assert1);
@@ -65,7 +73,8 @@ public  class SitePage {
         return this;
     }
     public SitePage clickEnter(){
-        driver.findElement(By.xpath(button_Enter_Xp)).click();
+        button_Enter_xp.click();
+        //driver.findElement(By.xpath(button_Enter_Xp)).click();
         return this;
     }
     public SitePage writeLogin(){
