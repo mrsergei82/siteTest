@@ -23,16 +23,30 @@ public  class SitePage {
     @FindBy(xpath = "//*[@id=\"js\"]/body/div[2]/header/div[1]/nav[2]/ul/li[2]")
     private WebElement button_Enter_xp;
     //private final String button_Enter_Xp = "//*[@id=\"js\"]/body/div[2]/header/div[1]/nav[2]/ul/li[2]";
-    private final String login_Xp = "//div[@class=\"b-loginform-field__wrap\"]/input";
-    private final String password_id = "lj_loginwidget_password";
-    private final String actionLog_name = "action:login";
-    private final String profileButton_Xp = "//body/div[2]/header/div[1]/nav[2]/ul/li[2]/a/span";
+    @FindBy(xpath = "//div[@class=\"b-loginform-field__wrap\"]/input")
+    private WebElement login_Xp;
+    //private final String login_Xp = "//div[@class=\"b-loginform-field__wrap\"]/input";
+    @FindBy(id = "lj_loginwidget_password")
+    private WebElement password_id;
+    //private final String password_id = "lj_loginwidget_password";
+    @FindBy(name = "action:login")
+    private WebElement actionLog_name;
+    //private final String actionLog_name = "action:login";
+    @FindBy(xpath = "//body/div[2]/header/div[1]/nav[2]/ul/li[2]/a/span")
+    private WebElement profileButton_Xp;
+   // private final String profileButton_Xp = "//body/div[2]/header/div[1]/nav[2]/ul/li[2]/a/span";
     private final String assert1 = "https://sergei777777.livejournal.com/";
-    private final String friends_Xp = "//ul[@class='j-nav j-header-nav j-journal-nav']/li[2]/a";
+    @FindBy(xpath = "//ul[@class='j-nav j-header-nav j-journal-nav']/li[2]/a")
+    private WebElement friends_Xp;
+    //private final String friends_Xp = "//ul[@class='j-nav j-header-nav j-journal-nav']/li[2]/a";
     private final String assert2 = "https://sergei777777.livejournal.com/feed/";
-    private final String profile_Xp = "//*[@id=\"home\"]/div[4]/div[3]/div/div[1]/div/div/header/div[2]/div/ul/li[3]/a";
+    @FindBy(xpath = "//*[@id=\"home\"]/div[4]/div[3]/div/div[1]/div/div/header/div[2]/div/ul/li[3]/a")
+    private WebElement profile_Xp;
+    //private final String profile_Xp = "//*[@id=\"home\"]/div[4]/div[3]/div/div[1]/div/div/header/div[2]/div/ul/li[3]/a";
     private final String assert3 = "https://sergei777777.livejournal.com/profile";
-    private final String memories_Xp = "//a[@title='Избранное']";
+    @FindBy(xpath = "//a[@title='Избранное']")
+    private WebElement memories_Xp;
+    //private final String memories_Xp = "//a[@title='Избранное']";
     private final String assert4 = "https://sergei777777.livejournal.com/memories";
 
     public SitePage(WebDriver driver){
@@ -53,19 +67,23 @@ public  class SitePage {
         driver.getCurrentUrl().equals(assert4);
     }
     public SitePage toMemories(){
-        driver.findElement(By.xpath(memories_Xp)).click();
+        memories_Xp.click();
+        //driver.findElement(By.xpath(memories_Xp)).click();
         return this;
     }
     public SitePage toProfile(){
-        driver.findElement(By.xpath(profile_Xp)).click();
+        profile_Xp.click();
+        //driver.findElement(By.xpath(profile_Xp)).click();
         return this;
     }
     public SitePage toFriendsPage(){
-        driver.findElement(By.xpath(friends_Xp)).click();
+        friends_Xp.click();
+       // driver.findElement(By.xpath(friends_Xp)).click();
         return this;
     }
     public SitePage getProfile(){
-        driver.findElement(By.xpath(profileButton_Xp)).click();
+        profileButton_Xp.click();
+        //driver.findElement(By.xpath(profileButton_Xp)).click();
         return this;
     }
     public SitePage getSite(){
@@ -78,15 +96,18 @@ public  class SitePage {
         return this;
     }
     public SitePage writeLogin(){
-        driver.findElement(By.xpath(login_Xp)).sendKeys(login);
+        login_Xp.sendKeys(login);
+        //driver.findElement(By.xpath(login_Xp)).sendKeys(login);
         return this;
     }
     public SitePage writePassword(){
-        driver.findElement(By.id(password_id)).sendKeys(password);
+        password_id.sendKeys(password);
+        //driver.findElement(By.id(password_id)).sendKeys(password);
         return this;
     }
     public SitePage clickLog(){
-        driver.findElement(By.name(actionLog_name)).click();
+        actionLog_name.click();
+        //driver.findElement(By.name(actionLog_name)).click();
         return this;
     }
 
