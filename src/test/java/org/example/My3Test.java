@@ -2,19 +2,17 @@ package org.example;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Epic;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+
 import java.util.concurrent.TimeUnit;
 
-public class MyTest {
-
+public class My3Test {
     @Test
-    @Epic("login")
-    public void test1(){
+    @Epic("Buttons")
+    public void test3(){
         WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("incognito");
@@ -26,8 +24,9 @@ public class MyTest {
                 .writeLogin()
                 .writePassword()
                 .clickLog()
-                .getProfile();
-        result.testAssert1();
+                .getProfile()
+                .toProfile();
+        result.testAssert3();
         driver.close();
     }
 }

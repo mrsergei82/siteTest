@@ -6,12 +6,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.concurrent.TimeUnit;
 
-public  class SitePage {
+public  class SitePage extends AbstractTest{
 
 
     private WebDriver driver;
@@ -50,21 +52,20 @@ public  class SitePage {
     private final String assert4 = "https://sergei777777.livejournal.com/memories";
 
     public SitePage(WebDriver driver){
+        super(driver);
 
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        //this.driver = driver;
+        //PageFactory.initElements(driver, this);
     }
-    public void testAssert1(){
-        driver.getCurrentUrl().equals(assert1);
-    }
+    public void testAssert1(){ getDriver().getCurrentUrl().equals(assert1); }
     public void testAssert2(){
-        driver.getCurrentUrl().equals(assert2);
+        getDriver().getCurrentUrl().equals(assert2);
     }
     public void testAssert3(){
-        driver.getCurrentUrl().equals(assert3);
+        getDriver().getCurrentUrl().equals(assert3);
     }
     public void testAssert4(){
-        driver.getCurrentUrl().equals(assert4);
+        getDriver().getCurrentUrl().equals(assert4);
     }
     public SitePage toMemories(){
         memories_Xp.click();
@@ -87,7 +88,7 @@ public  class SitePage {
         return this;
     }
     public SitePage getSite(){
-        driver.get(site);
+        getDriver().get(site);
         return this;
     }
     public SitePage clickEnter(){
@@ -110,5 +111,9 @@ public  class SitePage {
         //driver.findElement(By.name(actionLog_name)).click();
         return this;
     }
-
+    public SitePage log(){
+        Actions log = new Actions(getDriver());
+        log.sendKeys(login_Xp,login).sendKeys(password_id,password).click(actionLog_name);
+        return this;
+    }
 }
